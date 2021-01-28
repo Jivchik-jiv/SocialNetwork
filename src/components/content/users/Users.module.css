@@ -1,0 +1,85 @@
+.userBox {
+    display:grid;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    grid-template-columns:1fr 2fr 2fr;
+    grid-template-areas:
+    "p n a"
+    "p n a"
+    "p s s"
+    "p s s";
+    max-width:500px;
+    border:1px solid black;
+    margin-bottom:20px;
+    padding:10px;
+    border-radius: 20px;
+
+}
+
+.photoBox{
+   grid-area: p;
+}
+
+.nameBox{
+    grid-area: n;
+}
+
+.addressBox{
+    grid-area: a;
+}
+
+.addressBox p{
+    margin:0 0 10px;
+}
+
+.statusBox{
+    grid-area: s;
+}
+
+.statusBox h3{
+    margin:10px 0 10px;
+}
+
+.statusBox p{
+    margin:0;
+}
+
+.userBox img {
+    width:100px;
+    height:100px;
+    border-radius: 100%;
+    margin-right: 20px;   
+}
+
+.userBox h2{
+    margin:0;
+}
+
+.followButton{
+    width:100px;
+}
+
+
+
+.extraUsersBox img{
+    width:200px;
+    display:block;
+}
+
+.pagesCountBox .selectedPage {
+    font-weight: bold;
+    background: rgb(0, 0, 150);
+}
+
+.pagesCountBox {
+    margin-bottom:10px;
+}
+
+.pagesCountBox span{
+    cursor: pointer;
+    padding: 10px;
+    background:blue;
+    margin:4px;
+    color: white;
+
+
+}

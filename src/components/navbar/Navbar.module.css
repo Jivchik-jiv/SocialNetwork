@@ -1,0 +1,20 @@
+.nav{
+  grid-area: n;
+  background-color: rgb(35, 186, 206);
+ 
+}
+
+.item a{
+  text-decoration: none;
+  font-size: 1.3em;
+  margin:10px;
+  color:white;
+}
+
+.item a.active{
+  color:rgb(7, 11, 58);
+}
+
+.item a:hover{
+  color:rgb(34, 108, 177);
+}

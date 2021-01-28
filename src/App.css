@@ -1,0 +1,27 @@
+body{
+  overflow:scroll;
+}
+
+.app-wrapper{
+  width:1200px;
+  margin:0 auto;
+  grid-template-rows: 60px 1fr;
+  grid-template-columns:2fr 10fr;
+  grid-template-areas:
+  "h h"
+  "n c";
+  display:grid;
+  gap:20px;
+  
+}
+
+.app-wrapper-content{
+  grid-area: c;
+  background-color: rgb(255, 255, 255);
+}
+
+
+
+
+
+

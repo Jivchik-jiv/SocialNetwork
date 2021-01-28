@@ -1,0 +1,56 @@
+
+
+.new{
+ 
+  text-align:left;
+  background-color:white;
+  margin:20px auto;
+  padding:20px;
+  
+  }
+  
+  .new textarea{
+width:100%;
+box-sizing: border-box;
+outline:none;
+resize: none;
+background:rgb(56, 55, 55);
+color:white;
+border:none;
+padding: 7px;
+}
+
+.new button{
+  display:block;
+  margin:10px 0;
+ float:right;
+ background-color: rgb(35, 186, 206);
+ border:none;
+ padding:5px 25px;
+ box-shadow: 1px 1px 1px blue;
+}
+
+.new button:active{
+box-shadow:none;
+}
+
+.clear{
+  clear: both;
+}
+
+.pastPosts{
+  
+}
+
+.pastPosts article{
+display:flex;
+margin-top:30px;
+
+}
+
+.pastPosts img{
+  width:200px;
+  border-radius:100%;
+  margin-right:20px;
+}
+

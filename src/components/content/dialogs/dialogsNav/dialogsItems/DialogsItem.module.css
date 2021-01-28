@@ -1,0 +1,32 @@
+
+
+
+.dialogItem{
+    margin:20px 0;
+    display:grid;
+    grid-template-columns:2fr 4fr;
+
+    
+}
+
+.dialogItem a{
+    text-decoration: none;
+    color:rgb(5, 7, 34);
+    margin-left:10px;
+    font-size:1.5em;
+    
+}
+
+.dialogItem a.active{
+    color:rgb(168, 118, 209);
+    
+}
+.dialogItem a:hover{
+    color:rgb(35, 209, 180);
+}
+
+.dialogItem img{
+    width:50px;
+    height: 50px;
+    border-radius: 100%;
+}

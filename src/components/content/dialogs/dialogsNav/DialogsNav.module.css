@@ -1,0 +1,22 @@
+
+
+.dialogNav{
+    margin:10px 20px;
+    border-right: 2px solid rgb(5, 7, 34);
+    padding-right: 40px;
+   
+}
+
+.item{
+    margin:20px 0;
+    
+}
+
+.item a{
+    text-decoration: none;
+    color:rgb(5, 7, 34);
+}
+
+.item a.active{
+    color:rgb(110, 96, 13);
+}

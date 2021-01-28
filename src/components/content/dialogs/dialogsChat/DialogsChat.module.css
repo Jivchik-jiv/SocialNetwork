@@ -1,0 +1,87 @@
+
+
+.currentDialog{
+    padding:10px 20px;
+   
+}
+
+.messages{
+    overflow-y:scroll;
+    height:600px;
+    display:flex;
+    flex-direction:column-reverse;
+
+}
+
+.messages div{
+margin-top:30px;
+}
+
+.messages span{
+    border: 1px solid black;
+    padding:10px 20px;
+    border-radius: 10px;
+    display:inline-block;
+    max-width:90%;
+   }
+    
+
+.sended{
+    text-align:right;
+    margin-right:20px;
+}
+
+.resived span{
+    
+    background:rgb(27, 27, 199);
+    color:white;
+    
+}
+
+.sended span{
+    background:rgb(31, 165, 19);
+    
+    
+}
+
+.resived img{
+    width:40px;
+    height: 40px;
+    border-radius: 100%;
+    float:left;
+    margin-right:10px;
+    
+}
+
+.newMessage{
+    border-top:3px solid blue;
+    
+    
+    
+}
+
+.newMessage textarea{
+    display:block;
+    resize:none;
+    width:100%;
+    border:1px solid black;
+    padding:10px;
+    margin:5px auto;
+    box-sizing:border-box;
+    border-radius:10px;
+
+
+}
+
+.newMessage button{
+    float:right;
+    padding:10px 40px;
+    border:none;
+    border-radius:10px;
+
+}
+
+.clear{
+    clear:both;
+}
+
