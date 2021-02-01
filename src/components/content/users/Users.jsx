@@ -1,4 +1,5 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 import s from "./Users.module.css";
 
 const Users = (props) => {
@@ -32,7 +33,9 @@ const Users = (props) => {
           "https://telegram.org.ru/uploads/posts/2018-04/1523986370_file_488917.jpg";
         return (
           <div className={s.extraUsersBox} key={u.id}>
-            <img src={u.photos.small || imageUrl} alt="#" />
+            <NavLink to ={'/profile/' + u.id}  >
+              <img src={u.photos.small || imageUrl} alt="#" />
+            </NavLink>
             {u.followed ? (
               <button onClick={() => props.unfollow(u.id)}>Unfollow</button>
             ) : (

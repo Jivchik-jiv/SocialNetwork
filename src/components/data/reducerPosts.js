@@ -1,11 +1,17 @@
-const addPost = "ADD-POST";
-const updateNewPostText = "UP-NEW-POST-TEXT";
+const ADD_POST = "ADD_POST";
+const UP_NEW_POST_TEXT = "UP_NEW_POST_TEXT";
+const SET_USER_PROFILE = 'SET_USER_PROFILE';
 
 
 
-export const addPostActionCreator = () => ({type: addPost});
+export const onAddNewPost = () => ({type: ADD_POST});
 
-export const UpNewPostTextActionCreator = (text) => ({type: updateNewPostText, newText: text});
+export const onPostChange = (text) => ({type: UP_NEW_POST_TEXT, newText: text});
+
+export const setUserProfile = (profile) =>{
+   
+    return {type: SET_USER_PROFILE, profile}
+}
 
 
 let initialState = {
@@ -32,6 +38,17 @@ let initialState = {
        image : "https://images.static.press.net/v2/image/webpreview/8d19bd9b179702ead098b322bca42c84cHVibGljc2VhcmNobm93bSwxNjA5MTU5MDIx/2.50169101.jpg"}
    ],
    newPostText: "",
+   profile: {
+       aboutMe: "The power I am",
+       lookingForAJob: true,
+       fullName: "Mini Yoda",
+       userId: 777,
+       photos: {
+           small: "https://miro.medium.com/max/1200/1*mk1-6aYaf_Bes1E3Imhc0A.jpeg",
+           big: null
+       }
+
+   }
 };
 
 const postReducer = (localState = initialState, action)=>{
@@ -39,19 +56,27 @@ const postReducer = (localState = initialState, action)=>{
 
     switch(action.type){
         
-        case addPost:
+        case ADD_POST:
         
             let imgLink = prompt("Add an image link");
             let newPost = {id: localState.posts.length, title: "This is new post", text: localState.newPostText, image: imgLink};
             return {
                 posts: [...localState.posts, newPost],
                 newPostText: "",
+                profile:  localState.profile
             }
-        case updateNewPostText:
+        case UP_NEW_POST_TEXT:
+         
          return {
              posts: localState.posts,
              newPostText: action.newText,
+             profile:  localState.profile
          }
+         case SET_USER_PROFILE:
+           
+             return {
+                 ...localState, profile: action.profile
+             }
         default:
          return localState;
     }

@@ -4,9 +4,10 @@ import Personal from "./personal/Personal";
 import Posts from "./posts/Posts";
 
 const Profile = (props) => {
+ 
   return (
     <div className={s.content}>
-      <Personal />
+      <Personal profile = {props.state.profile}/>
 
       <Posts data={props} />
     </div>

@@ -3,7 +3,8 @@ const UNFOLLOW = 'UNFOLLOW';
 const SET_USERS = 'SET_USERS';
 const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
 const SET_TOTAL_USERS_COUNT = 'SET_TOTAL_USERS_COUNT';
-const TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING'
+const TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING';
+
 
 
 
@@ -31,6 +32,8 @@ export const unfollow = (userId)=>{
   export const toggleIsFetching = (isFetching) =>{
       return {type: TOGGLE_IS_FETCHING, isFetching};
   };
+
+  
   
   
 
@@ -44,7 +47,7 @@ export const unfollow = (userId)=>{
   };
 
 const usersReducer = (localState = initialState, action)=>{
-debugger;
+
     switch (action.type){
         case FOLLOW:
         return{

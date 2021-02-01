@@ -1,69 +1,43 @@
+import React from "react";
 import {
-  addPostActionCreator,
-  UpNewPostTextActionCreator,
+  onPostChange,
+  onAddNewPost,
+  setUserProfile,
 } from "../../data/reducerPosts";
 import Profile from "./Profile";
-import {connect} from "react-redux";
+import { connect } from "react-redux";
+import axios from "axios";
+import { withRouter } from "react-router-dom";
 
-/*
-
-const ProfileContainer = () => {
-
+class ProfileContainer extends React.Component {
+  
+  componentDidMount() {
     
+    let userId = this.props.match.params.userId;
+    axios
+      .get(`https://social-network.samuraijs.com/api/1.0/profile/` + userId)
+      .then((response) => {
+        this.props.setUserProfile(response.data);
+      });
+  }
 
-
-
-
-  return (
-    <StoreContext.Consumer>
-
-    { (store) => {
-      let onPostChange = (text) => {
-        let action = UpNewPostTextActionCreator(text);
-        store.dispatch(action);
-      };
-      
-      let onAddNewPost = () => {
-        let action = addPostActionCreator();
-        store.dispatch(action);
-      };
-      
-      return (<Profile
-      localState={store.getState().profilePage.posts}
-      newPostText={store.getState().profilePage.newPostText}
-      dispatch={store.dispatch.bind(store)}
-      onPostChange={onPostChange}
-      onAddNewPost={onAddNewPost} />)}}
-
-  </StoreContext.Consumer>
-  );
-};
-
-*/
-
-let mapStateToProps = (state) =>{
-
-  
-  return ({
-    state: state.profilePage
-  });
-};
-
-let mapDispatchToProps = (dispatch) => {
-  
-  
-  return ({
-    onPostChange: (text) => {
-    let action = UpNewPostTextActionCreator(text);
-    dispatch(action);
-  },
-  onAddNewPost: () => {
-    let action = addPostActionCreator();
-    dispatch(action);
-  }});
-
+  render() {
+    
+    return <Profile {...this.props} />;
+  }
 }
 
-const ProfileContainer = connect(mapStateToProps, mapDispatchToProps)(Profile);
+let mapStateToProps = (state) => {
+  
+  return {
+    state: state.profilePage,
+  };
+};
 
-export default ProfileContainer;
+let WithUrlDataContainerComponent = withRouter(ProfileContainer)
+
+export default connect(mapStateToProps, {
+  onPostChange,
+  onAddNewPost,
+  setUserProfile,
+})(WithUrlDataContainerComponent);
