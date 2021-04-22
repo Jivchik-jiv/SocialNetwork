@@ -13,11 +13,11 @@ let initialState = {
     isAuth: false,
 }
 
-export const setAuthUserData = (userId, email, login, isAuth) => {
+export const setAuthUserData = (id, email, login, isAuth) => {
     return {
         type: SET_USER_DATA,
         payload: {
-            userId,
+            id,
             email,
             login,
             isAuth
@@ -41,9 +41,10 @@ const authReducer = (localState = initialState, action) => {
 
 
 export const auth = () => async (dispatch)=>{
-
+    
         let response = await usersAPI.getAuth();
         
+       
 
             if (response.resultCode === 0) {
                 let {
@@ -59,6 +60,7 @@ export const auth = () => async (dispatch)=>{
 export const login = (loginData) => async (dispatch) => {
     
      let response = await loginAPI.postAuth(loginData);
+     
     
         if (response.resultCode === 0) {
 
@@ -71,8 +73,8 @@ export const login = (loginData) => async (dispatch) => {
 }
 
 export const logout = () =>async (dispatch) => {
-   let response = await loginAPI.deleteAuth();
-            dispatch(setAuthUserData(null, null, null, false))
+    await loginAPI.deleteAuth();
+    dispatch(setAuthUserData(null, null, null, false));
 }
 
 export default authReducer;
