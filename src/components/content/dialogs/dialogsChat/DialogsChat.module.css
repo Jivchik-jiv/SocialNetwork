@@ -78,7 +78,13 @@ margin-top:30px;
     padding:10px 40px;
     border:none;
     border-radius:10px;
+    background: rgb(35, 182, 84);
+    box-shadow: 1px 1px 1px green;
 
+}
+
+.newMessage button:active {
+    box-shadow:none;
 }
 
 .clear{

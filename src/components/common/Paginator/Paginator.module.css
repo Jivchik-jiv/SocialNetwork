@@ -1,0 +1,37 @@
+
+
+.selectedPage {
+    font-weight: bold;
+    background: rgb(0, 0, 150);
+}
+
+.paginatorBox {
+    margin-bottom:10px;
+    display: flex;
+    justify-content: center;
+}
+
+.paginatorBox span{
+    cursor: pointer;
+    padding: 10px;
+    background:blue;
+    margin: 0 4px;
+    color: white;
+    background-size: contain;
+    display: block;
+}
+
+.paginatorButton{
+    border: none;
+    outline: none;
+    height: 100%;
+    padding: 12px;
+    margin: 0;
+    background: linear-gradient(180deg, rgba(69,112,251,1) 0%, rgba(8,53,201,1) 100%);
+    
+}
+
+.paginatorNumbers {
+    display: flex;
+    
+}

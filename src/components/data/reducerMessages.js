@@ -1,12 +1,8 @@
 
 const sendNewMessage = "SEND-NEW-MESSAGE";
-const updateNewMessageText = "UP-NEW-MESSAGE-TEXT";
 
 
-
-export const sendNewMessageActionCreator = () => ({type:sendNewMessage});
-
-export const upNewMessageTextActionCreator = (text) => ({type:updateNewMessageText, newText: text});
+export const sendNewMessageActionCreator = (newMessageBody) => ({type:sendNewMessage, text: newMessageBody});
 
 
 let initialState = {
@@ -61,7 +57,6 @@ let initialState = {
       {iAmSender: true, text: "Good news. What about the others?"},
       {iAmSender: false, text: "Most of them in. Party gonna be great."},
  ]}],
- newMessageText: "",
 }
 
 const messageReducer = (localState = initialState, action) =>{
@@ -73,21 +68,15 @@ switch (action.type){
       chatsUsers: localState.chatsUsers.map((obj, ind,) => {
         if(ind === 0){
           let newObj = {...obj};
-          let newMessage= {iAmSender: true, text: localState.newMessageText};
+          let newMessage= {iAmSender: true, text: action.text};
           newObj.messages = [...obj.messages, newMessage];
           return newObj;
         } else{
           return obj;
         }
       }),
-      newMessageText: "",
     }
-  case updateNewMessageText:
-
-  return {
-    ...localState,
-    newMessageText: action.newText,
-  }
+  
   default:
     return localState;
 }

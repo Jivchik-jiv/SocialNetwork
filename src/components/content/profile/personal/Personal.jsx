@@ -1,8 +1,15 @@
 
 import React from 'react';
+import Preloader from '../../../common/Preloader/Preloader';
 import s from './Personal.module.css';
+import PersonalStatusWithHooks from './PersonalStatusWithHooks';
 
-const Personal = () => {
+const Personal = ({profile, status, updateStatus}) => {
+ 
+
+  if(!profile){
+    return <Preloader/>
+  }
 
    return (<div className={s.profile}>
    <div className = {s.header}>
@@ -10,16 +17,18 @@ const Personal = () => {
    </div>
    <div className = {s.personalData}>
         <div>
-            <img src="https://miro.medium.com/max/1200/1*mk1-6aYaf_Bes1E3Imhc0A.jpeg" alt="#"/>
+            <img src= {profile.photos.small || "https://miro.medium.com/max/1200/1*mk1-6aYaf_Bes1E3Imhc0A.jpeg"} alt="#"/>
         </div>
         <div className = {s.text}>
-            <h2>Mini Yoda</h2>
-            <p>Year of birth : 7354</p>
-            <p>Planet: Namory</p>
-            <p>Education: Jeday school</p>
-            <p>Web site: yoda.un</p>
+            <h2>{profile.fullName ||"Mini Yoda"}</h2>
+            <p>About me: {profile.aboutMe || "I'm a shy guy"}</p>
+            {profile.lookingForAJob ? <p>Need a job</p> : <p>Currently employed</p>}
+            <PersonalStatusWithHooks status = {status} updateStatus = {updateStatus}/>
         </div>
+      
    </div>
+
+   
 
    </div>
    

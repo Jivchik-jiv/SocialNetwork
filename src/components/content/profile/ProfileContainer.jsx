@@ -1,69 +1,60 @@
+import React from "react";
 import {
-  addPostActionCreator,
-  UpNewPostTextActionCreator,
+  onAddNewPost,
+  setUserProfile,
+  getUserProfile,
+  getStatus,
+  updateStatus,
 } from "../../data/reducerPosts";
 import Profile from "./Profile";
-import {connect} from "react-redux";
+import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
+import { withAuthRedirect } from "../../hoc/withAuthRedirect";
+import { compose } from "redux";
 
-/*
+class ProfileContainer extends React.Component {
+ 
+  componentDidMount() {
+   
+    let userId = this.props.match.params.userId;
+    if (!userId) {
+      userId = this.props.authorizedUserId;
+      /*if (!userId) {
+        this.props.history.push("/login");
+      }*/
+    }
+    this.props.getUserProfile(userId);
+    this.props.getStatus(userId);
 
-const ProfileContainer = () => {
-
-    
+  }
 
 
-
-
-  return (
-    <StoreContext.Consumer>
-
-    { (store) => {
-      let onPostChange = (text) => {
-        let action = UpNewPostTextActionCreator(text);
-        store.dispatch(action);
-      };
-      
-      let onAddNewPost = () => {
-        let action = addPostActionCreator();
-        store.dispatch(action);
-      };
-      
-      return (<Profile
-      localState={store.getState().profilePage.posts}
-      newPostText={store.getState().profilePage.newPostText}
-      dispatch={store.dispatch.bind(store)}
-      onPostChange={onPostChange}
-      onAddNewPost={onAddNewPost} />)}}
-
-  </StoreContext.Consumer>
-  );
-};
-
-*/
-
-let mapStateToProps = (state) =>{
-
+  shouldComponentUpdate(nextProps, nextState){
+    return nextProps != this.props || nextState != this.state
+  }
   
-  return ({
-    state: state.profilePage
-  });
-};
 
-let mapDispatchToProps = (dispatch) => {
-  
-  
-  return ({
-    onPostChange: (text) => {
-    let action = UpNewPostTextActionCreator(text);
-    dispatch(action);
-  },
-  onAddNewPost: () => {
-    let action = addPostActionCreator();
-    dispatch(action);
-  }});
-
+  render() {
+   
+    return <Profile {...this.props} />;
+  }
 }
 
-const ProfileContainer = connect(mapStateToProps, mapDispatchToProps)(Profile);
+let mapStateToProps = (state) => ({
+  state: state.profilePage,
+  status: state.profilePage.status,
+  authorizedUserId: state.auth.id,
+  isAuth: state.auth.isAuth,
+});
 
-export default ProfileContainer;
+export default compose(
+  connect(mapStateToProps, {
+    onAddNewPost,
+    setUserProfile,
+    getUserProfile,
+    getStatus,
+    updateStatus,
+  }),
+  withRouter,
+  //withAuthRedirect
+)(ProfileContainer);

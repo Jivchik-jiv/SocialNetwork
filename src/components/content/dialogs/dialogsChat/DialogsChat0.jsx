@@ -1,19 +1,34 @@
 import React from "react";
+import { Field, reduxForm } from "redux-form";
+import { maxLengthCreator, required } from "../../../../util/validators/validators";
+import { Textarea } from "../../../common/FormsControls/FormsControls";
 import s from "./DialogsChat.module.css";
 
+const maxLength50 = maxLengthCreator(50);
+
+const NewMessageForm = (props) => {
+
+return (
+<form className={s.newMessage} onSubmit = {props.handleSubmit}>
+
+        <Field component= {Textarea}  
+        validate = {[required, maxLength50]}
+        placeholder="New..." name = "newMessageBody"/>
+        
+        <button >Send</button>
+      </form>
+
+)
+}
+
+const NewMessageFormRedux = reduxForm ({form: "dialogNewMessageForm"})(NewMessageForm);
+
+
 const DialogsChat0 = (props) => {
-  const newMessage = React.createRef();
 
-  const sendNewMessage = (event) => {
-    event.preventDefault();
-    props.currentState.sendNewMessage();
-  };
-
-  const onMessageChange = () => {
-    debugger;
-    let text = newMessage.current.value;
-    props.currentState.onMessageChange(text);
-  };
+  const addNewMessage = (values) =>{
+    props.currentState.sendNewMessage(values.newMessageBody);
+  }
 
   const currentUser = props.currentState.state.chatsUsers[0];
 
@@ -44,18 +59,11 @@ const DialogsChat0 = (props) => {
     <div className={s.currentDialog}>
       <h1>{currentUser.name}'s Chat</h1>
       <div className={s.messages}>{messages}</div>
-      <form className={s.newMessage}>
-        <textarea
-          ref={newMessage}
-          placeholder="Your message..."
-          onChange={onMessageChange}
-          value={props.currentState.state.newMessageText}
-        ></textarea>
-        <button onClick={sendNewMessage}>Send</button>
-        <div className={s.clear}></div>
-      </form>
+      <NewMessageFormRedux onSubmit = {addNewMessage}/>
     </div>
   );
 };
+
+
 
 export default DialogsChat0;

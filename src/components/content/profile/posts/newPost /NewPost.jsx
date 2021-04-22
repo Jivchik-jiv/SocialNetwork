@@ -1,37 +1,29 @@
 import React from "react";
 import s from "./NewPost.module.css";
+import { Field, reduxForm } from "redux-form";
+import { maxLengthCreator, required } from "../../../../../util/validators/validators";
+import { Textarea } from "../../../../common/FormsControls/FormsControls";
 
 
-const NewPost = (props) => {
- 
-  let newElem=React.createRef();
+const maxLength10 = maxLengthCreator(10)
 
-let addPost= (event)=>{
- 
-  event.preventDefault();
-  props.data.onAddNewPost();
-  
-};
+const NewPost2 = (props) => {
 
-let onPostChange = ()=>{
 
-let text= newElem.current.value;
-props.data.onPostChange(text);
+  return <div className = {s.new}>
+          <form onSubmit = {props.handleSubmit}>
+            <Field  component = {Textarea} placeholder = "What's new?" name = {"newPost"}
+            validate = {[required, maxLength10]}/>
+            <button>Post</button>
+
+
+         </form>
+
+  </div>
 }
 
 
 
-  return (
-      <div className={s.new}>
-        <form>
-          <textarea ref ={newElem} value = {props.data.state.newPostText}
-                    onChange = {onPostChange} placeholder="New post..."></textarea>
+const NewPostRedaxForm = reduxForm({form: "newPost"})(NewPost2);
 
-          <button onClick= {addPost}>Send</button>
-          <div className={s.clear} />
-        </form>
-      </div>
-  );
-};
-
-export default NewPost;
+export default NewPostRedaxForm;

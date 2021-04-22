@@ -10,3 +10,13 @@ background: rgb(22, 148, 148);
   
   
 }
+
+.loginBlock {
+  float: right;
+  color: white;
+  margin:20px;
+}
+
+.loginBlock  a{
+  color: white;
+}

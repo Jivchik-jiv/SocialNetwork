@@ -65,21 +65,3 @@
     display:block;
 }
 
-.pagesCountBox .selectedPage {
-    font-weight: bold;
-    background: rgb(0, 0, 150);
-}
-
-.pagesCountBox {
-    margin-bottom:10px;
-}
-
-.pagesCountBox span{
-    cursor: pointer;
-    padding: 10px;
-    background:blue;
-    margin:4px;
-    color: white;
-
-
-}
