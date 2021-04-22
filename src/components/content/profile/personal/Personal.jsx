@@ -2,10 +2,12 @@
 import React from 'react';
 import Preloader from '../../../common/Preloader/Preloader';
 import s from './Personal.module.css';
+import PersonalStatusWithHooks from './PersonalStatusWithHooks';
 
-const Personal = (props) => {
+const Personal = ({profile, status, updateStatus}) => {
+ 
 
-  if(!props.profile){
+  if(!profile){
     return <Preloader/>
   }
 
@@ -15,15 +17,18 @@ const Personal = (props) => {
    </div>
    <div className = {s.personalData}>
         <div>
-            <img src= {props.profile.photos.small || "https://miro.medium.com/max/1200/1*mk1-6aYaf_Bes1E3Imhc0A.jpeg"} alt="#"/>
+            <img src= {profile.photos.small || "https://miro.medium.com/max/1200/1*mk1-6aYaf_Bes1E3Imhc0A.jpeg"} alt="#"/>
         </div>
         <div className = {s.text}>
-            <h2>{props.profile.fullName ||"Mini Yoda"}</h2>
-            <p>About me: {props.profile.aboutMe || "I'm a shy guy"}</p>
-            {props.profile.lookingForAJob ? <p>Need a job</p> : <p>Currently employed</p>}
-           
+            <h2>{profile.fullName ||"Mini Yoda"}</h2>
+            <p>About me: {profile.aboutMe || "I'm a shy guy"}</p>
+            {profile.lookingForAJob ? <p>Need a job</p> : <p>Currently employed</p>}
+            <PersonalStatusWithHooks status = {status} updateStatus = {updateStatus}/>
         </div>
+      
    </div>
+
+   
 
    </div>
    

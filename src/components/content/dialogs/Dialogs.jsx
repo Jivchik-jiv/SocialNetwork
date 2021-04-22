@@ -15,8 +15,9 @@ import DialogsNav from './dialogsNav/DialogsNav';
 
 const Dialogs = (props)=>{
 
+
     return (
-       <BrowserRouter>
+        <BrowserRouter>
             <div className = {s.dialogs}>
                  <DialogsNav data = {props.state.chatsUsers}/>
 
@@ -28,8 +29,8 @@ const Dialogs = (props)=>{
                   <Route path = "/chat4" render = {()=><DialogsChat4 currentState = {props}/>}/>
                 </div>
             </div>
-        
         </BrowserRouter>
+      
     );
 
 }

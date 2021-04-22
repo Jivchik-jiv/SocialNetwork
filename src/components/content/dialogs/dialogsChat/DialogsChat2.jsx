@@ -40,7 +40,6 @@ const DialogsChat2 = (props)=>{
 
 
 
-    debugger;
 
     return (
 
