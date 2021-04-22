@@ -7,7 +7,7 @@ import { Textarea } from "../../../../common/FormsControls/FormsControls";
 
 const maxLength10 = maxLengthCreator(10)
 
-const NewPost2 = (props) => {
+const NewPost = (props) => {
 
 
   return <div className = {s.new}>
@@ -24,6 +24,6 @@ const NewPost2 = (props) => {
 
 
 
-const NewPostRedaxForm = reduxForm({form: "newPost"})(NewPost2);
+const NewPostRedaxForm = reduxForm({form: "newPost"})(NewPost);
 
 export default NewPostRedaxForm;

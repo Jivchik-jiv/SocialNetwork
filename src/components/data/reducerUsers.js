@@ -106,9 +106,9 @@ const usersReducer = (localState = initialState, action) => {
             };
         case SET_TOTAL_USERS_COUNT:
 
-            //let totalCount = action.totalUsersCount < 70 ? action.totalUsersCount : 70;
+            let totalCount = action.totalUsersCount < 705 ? action.totalUsersCount : 705;
             return {
-                ...localState, totalUsersCount: action.totalUsersCount
+                ...localState, totalUsersCount: totalCount
             };
         case TOGGLE_IS_FETCHING:
 
