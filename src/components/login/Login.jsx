@@ -1,6 +1,6 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
-import { Field, reduxForm } from 'redux-form';
+import { reduxForm } from 'redux-form';
 import {  required } from '../../util/validators/validators';
 import { createField, Input } from '../common/FormsControls/FormsControls';
 import s from '../common/FormsControls/FormsControls.module.css'
