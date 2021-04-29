@@ -1,6 +1,6 @@
 import './App.css';
 import React from 'react';
-import {Route, withRouter } from 'react-router-dom';
+import {Redirect, Route, Switch, withRouter } from 'react-router-dom';
 import Navbar from './components/navbar/Navbar';
 import ProfileContainer from './components/content/profile/ProfileContainer';
 import News from './components/content/news/News';
@@ -17,15 +17,26 @@ import store from './components/data/redux-store';
 import { HashRouter } from 'react-router-dom';
 import {Provider} from "react-redux";
 import { withSuspence } from './components/hoc/withSuspence';
+
 const DialogsContainer = React.lazy(() => import('./components/content/dialogs/DialogsContainer'));
 
 
 
  class App extends React.Component {
 
+  catchAllUnhandledErrors = (promiseRejectionEvent) => {
+    alert ("Some error occured");
+  }
+
   componentDidMount() {
     this.props.initializeApp();
+    window.addEventListener("unhandledrejection", this.catchAllUnhandledErrors);
   }
+
+  componentWillUnmount() {
+    window.removeEventListener("unhandledrejection", this.catchAllUnhandledErrors);
+  }
+  
 
 render () {
   if(!this.props.initialized){
@@ -39,17 +50,20 @@ render () {
 
       <HeaderContainer/>
       <Navbar/>
-      
-      
       <div className = "app-wrapper-content">
-        <Route path = "/dialogs" render = {withSuspence(DialogsContainer)}/>
-        <Route path = "/profile/:userId?" render = {()=><ProfileContainer/>}/>
-        <Route path = "/users" render = {()=><UsersContainer/>}/>
-        <Route path = "/news" component = {News}/>
-        <Route path = "/music" component = {Music}/>
-        <Route path = "/settings" component = {Settings}/>
-        <Route path = "/login" render = {()=><LoginPage />}/>
-          
+        
+        <Switch>
+          <Route exact path = "/" render = {()=><Redirect to = {"/profile"}/>}/>
+          <Route path = "/dialogs" render = {withSuspence(DialogsContainer)}/>
+          <Route path = "/profile/:userId?" render = {()=><ProfileContainer/>}/>
+          <Route path = "/users" render = {()=><UsersContainer/>}/>
+          <Route path = "/news" component = {News}/>
+          <Route path = "/music" component = {Music}/>
+          <Route path = "/settings" component = {Settings}/>
+          <Route exact path = "/login" render = {()=><LoginPage />}/>  {/* Покажет только страницы с адресом login, 
+           и проигнорит все которые длиннее: login/test. Так же можно воспользоватьсся <Switch>, который отрендерит первое совпадение и дальше не пойдёт.*/}
+          <Route path = "*" render = {()=> <div>404 not found</div>}/>
+        </Switch> 
       </div>
   </div>
  );
@@ -73,5 +87,7 @@ const SamuraiJSApp = (props) => {
     </HashRouter>
   )
 }
+
+
 
 export default SamuraiJSApp;

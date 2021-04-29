@@ -7,7 +7,7 @@ import s from '../common/FormsControls/FormsControls.module.css'
 
 
 
-const LoginForm = ({handleSubmit, error}) => {
+const LoginForm = ({handleSubmit, error, captchaUrl}) => {
    
   return  (
   <form onSubmit = {handleSubmit}>
@@ -22,6 +22,8 @@ const LoginForm = ({handleSubmit, error}) => {
             {createField(null, "checkbox", null, Input, "checkbox")}  Remember me  
         
         </div>
+        {captchaUrl? <img src = {captchaUrl} alt = ""/> : false}
+        {captchaUrl? createField("Symbols from captcha", "captcha", [required], Input) : false}
         {error && <div className = {s.formSummaryError}>
             {error}
         </div>}
@@ -41,6 +43,7 @@ const Login = (props) => {
             email: input.login,
             password: input.password,
             rememberMe: input.checkbox,
+            captcha: input.captcha
         };
 
         props.login(formData);
@@ -54,8 +57,8 @@ const Login = (props) => {
 
     return <div>
     <h1>Login Page</h1>
-    <LoginReduxForm onSubmit = {onSubmit}/>
-
+    <LoginReduxForm onSubmit = {onSubmit} captchaUrl = {props.captchaUrl}/>
+   
 
 </div>
 }
