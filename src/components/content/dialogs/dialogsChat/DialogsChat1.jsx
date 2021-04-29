@@ -14,6 +14,7 @@ const DialogsChat1 = (props)=>{
     }
 
     const onMessageChange = ()=>{
+        debugger;
         let text=newMessage.current.value;
         props.currentState.onMessageChange(text);
         

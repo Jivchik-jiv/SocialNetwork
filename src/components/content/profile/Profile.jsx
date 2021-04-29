@@ -9,7 +9,9 @@ const Profile = React.memo((props) => {
  
   return (
     <div className={s.content}>
-      <Personal profile = {props.state.profile} status= {props.status} updateStatus = {props.updateStatus}/>
+      <Personal profile = {props.state.profile} status= {props.status} 
+        updateStatus = {props.updateStatus} isOwner = {props.isOwner} 
+        savePhoto = {props.savePhoto} saveProfile = {props.saveProfile}/>
       <Posts data={props} />
     </div>
   );

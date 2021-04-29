@@ -1,21 +1,25 @@
 
-.profile{
+.personal{
   background-color: white;
+  display: flex;
 }
 
-.profile img{
+.personalAvatar{
   display:block;
-  width:200px;
+  width:200px
 }
 
-.header img{
-  width:100%;
-}
 
 .personalData{
-  padding:20px 0;
   display: flex;
-  
+  justify-content: space-between;
+  width: 100%;
+}
+
+.personalDataForm{
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
 }
 
 .personalData h2{
@@ -25,6 +29,22 @@
 
 .text {
   margin-left:20px; 
+}
+
+.contact {
+  margin: 5px 0;
+}
+
+.contactImg {
+  width: 50px;
+  margin-right: 5px;
+}
+
+.contact a{
+  font-size: .7em;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
 }
 
 
